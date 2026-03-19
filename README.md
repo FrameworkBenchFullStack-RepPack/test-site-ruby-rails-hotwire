@@ -1,0 +1,1 @@
+# test-site-ruby-rails-hotwire
