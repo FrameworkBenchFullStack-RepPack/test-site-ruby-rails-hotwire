@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Test site" %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "footer" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <footer>
+      <div id="footer-content">
+        <%= link_to "Test site", :home, id: "footer-logo" %>
+        <ul>
+          <%= render "shared/links" %>
+        </ul>
+        <blockquote>
+          Sed blandit est nec quam vulputate, id vulputate ipsum scelerisque.
+          Etiam in elit ornare, fermentum nisl vel, gravida ipsum.
+        </blockquote>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% people.each do |person| %>
+      <tr>
+        <td><%= person.name %></td>
+        <td><%= person.age %></td>
+        <td><%= person.category.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if people.empty? %>
+  <p class="no-data-message">No entries matched the filter settings.</p>
+<% end %>

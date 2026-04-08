@@ -1,0 +1,55 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "list" %>
+<% end %>
+
+<div id="list" <%= 'class=sticky' if sticky %>>
+  <div class="controls">
+    <%= form_with class: "form", method: :get,
+      data: {
+        turbo_frame: "list-data",
+        turbo_stream: true,
+        controller: "form",
+        action: "input->form#input change->form#change"
+      } do |form| %>
+      <%= form.label :sort do %>
+        Sort by:
+        <%= form.select :sort, sort_options.select_options, selected: filters.sort %>
+      <% end %>
+      <fieldset>
+        <legend> Age </legend>
+        <%= form.label :age_from do %>
+          From:
+          <%= form.number_field :age_from, value: filters.age_from, step: 1, required: true, **ListConfig::FILTER_LIMITS[:age_from] %>
+        <% end %>
+        <%= form.label :age_to do %>
+          To:
+          <%= form.number_field :age_to, value: filters.age_to, step: 1, required: true, **ListConfig::FILTER_LIMITS[:age_to] %>
+        <% end %>
+      </fieldset>
+      <fieldset>
+        <legend> Categories </legend>
+        <% categories.each do |category| %>
+          <label>
+            <%= checkbox_tag "category", category.id, filters.category.include?(category.id) %>
+            <%= category.name %>
+          </label>
+        <% end %>
+      </fieldset>
+      <fieldset>
+        <legend> Paging </legend>
+        <%= form.label :size do %>
+          Size:
+          <%= form.number_field :size, value: filters.size, step: 1, required: true, **ListConfig::FILTER_LIMITS[:size] %>
+        <% end %>
+        <%= form.label :page_num do %>
+          Page:
+          <%= form.number_field :page_num, value: filters.page_num, step: 1, required: true, **ListConfig::FILTER_LIMITS[:page_num] %>
+        <% end %>
+      </fieldset>
+      <%= form.submit "Search" %>
+    <% end %>
+  </div>
+  <%= turbo_frame_tag "list-data" do %>
+    <%= render "shared/list/list_content", sticky:, people: %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "live" %>
+<% end %>
+
+<%= turbo_stream_from "live_data" %>
+<table id="live-data">
+  <tbody>
+    <%= render "shared/live/live_row", value1: "", value2: "", value3: "" %>
+  </tbody>
+</table>
