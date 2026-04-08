@@ -10,7 +10,14 @@ export default class extends Controller {
   #submit(delay) {
     clearTimeout(this.#submitTimeout);
     this.#submitTimeout = setTimeout(() => {
-      this.element.requestSubmit();
+      if (this.element.checkValidity()) {
+        this.element.requestSubmit();
+
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(new FormData(this.element));
+        url.search = params.toString();
+        history.replaceState({}, "", url);
+      }
     }, delay);
   }
 
