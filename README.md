@@ -32,8 +32,9 @@ DATABASE_URL=postgresql://USER:PASS@localhost:PORT/benchmark HTTP_PORT=4000 RAIL
 This opens an internal cross-process communication port which defaults to port `3000`. If you need to change it, you can do so by adding `TARGET_PORT=3001` to the beginning of the above command. It is important that you do not connect directly to `TARGET_PORT`, but connect to the external `HTTP_PORT` instead.
 
 While starting up, the server will log:
+
 ```sh
-{"time":"2026-04-06T15:55:11.260039689+02:00","level":"INFO","msg":"Server started","http":":3002"}
+{"time":"2026-04-06T15:55:11.260039689+02:00","level":"INFO","msg":"Server started","http":":4000"}
 ```
 
 Which contains the correct port for you to listen on. When server is ready, it logs:
