@@ -41,7 +41,7 @@ Rails.application.configure do
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
-  #config.silence_healthcheck_path = "/up"
+  # config.silence_healthcheck_path = "/up"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
@@ -50,8 +50,8 @@ Rails.application.configure do
   config.cache_store = :memory_store
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
-  #config.active_job.queue_adapter = :solid_queue
-  #config.solid_queue.connects_to = { database: { writing: :queue } }
+  # config.active_job.queue_adapter = :solid_queue
+  # config.solid_queue.connects_to = { database: { writing: :queue } }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -93,11 +93,11 @@ Rails.application.configure do
 
   # Add caching and security headers
   config.public_file_server.headers = {
-    'Cache-Control' => 'public, max-age=86400',
+    "Cache-Control" => "public, max-age=86400",
     "Content-Security-Policy" => "default-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none';",
     "Cross-Origin-Embedder-Policy" => "require-corp",
     "Cross-Origin-Opener-Policy" => "same-origin",
     "Cross-Origin-Resource-Policy" => "same-origin",
-    'X-Content-Type-Options' => 'nosniff'
+    "X-Content-Type-Options" => "nosniff"
   }
 end

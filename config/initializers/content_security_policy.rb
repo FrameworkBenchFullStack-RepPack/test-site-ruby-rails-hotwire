@@ -7,10 +7,10 @@
 Rails.application.configure do
   config.content_security_policy do |policy|
     policy.default_src :self, :unsafe_inline
-    policy.form_action :self 
+    policy.form_action :self
     policy.base_uri :none
     policy.frame_ancestors :none
-    policy.object_src  :none
+    policy.object_src :none
     # Specify URI for violation reports
     # policy.report_uri "/csp-violation-report-endpoint"
   end
